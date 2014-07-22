@@ -74,12 +74,14 @@ func From32(x float32) Float16 {
 	}
 	v >>= shift32 // logical shift
 	if v > maxC32 {
-		v ^= (v - maxD32) ^ v
+		v -= maxD32
 	}
 	if v > subC {
-		v ^= (v - minD32) ^ v
+		v -= minD32
 	}
-	return Float16(v | sign)
+
+	v |= sign
+	return Float16(v)
 }
 
 // converts a float64 to half-precision float
@@ -95,19 +97,21 @@ func From64(x float64) Float16 {
 		v = math.Float64bits(f)
 	}
 	if infN64 > v && v > maxN64 {
-		v ^= infN64 ^ v
+		v = infN64
 	}
 	if nanN64 > v && v > infN64 {
-		v ^= nanN64 ^ v
+		v = nanN64
 	}
 	v >>= shift64 // logical shift
 	if v > maxC64 {
-		v ^= (v - maxD64) ^ v
+		v -= maxD64
 	}
 	if v > subC {
-		v ^= (v - minD64) ^ v
+		v -= minD64
 	}
-	return Float16(v | sign)
+
+	v |= sign
+	return Float16(v)
 }
 
 // converts a half-precision float to float32
@@ -155,7 +159,7 @@ func (x Float16) To64() float64 {
 	}
 
 	v |= sign
-	return math.Float64frombits(v | sign)
+	return math.Float64frombits(v)
 }
 
 func FromBigEndian(b []byte) Float16 {
