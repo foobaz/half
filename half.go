@@ -63,8 +63,8 @@ func From32(x float32) Float16 {
 
 	if minN32 > v {
 		f := math.Float32frombits(mulN32)
-		f *= float32(v) // correct subnormals
-		v = math.Float32bits(f)
+		f *= math.Float32frombits(v) // correct subnormals
+		v = uint32(f)
 	}
 	if infN32 > v && v > maxN32 {
 		v = infN32
@@ -93,8 +93,8 @@ func From64(x float64) Float16 {
 
 	if minN64 > v {
 		f := math.Float64frombits(mulN64)
-		f *= float64(v) // correct subnormals
-		v = math.Float64bits(f)
+		f *= math.Float64frombits(v) // correct subnormals
+		v = uint64(f)
 	}
 	if infN64 > v && v > maxN64 {
 		v = infN64

@@ -14,8 +14,8 @@ many image formats, such as OpenEXR, for high dynamic range and deep color.
 
 ###Limitations
 The range and precision of a 16-bit float are much less than a 32-bit float.
-They can represent positive and negative values as small as 0.000070 and as
-large as 65472.0 with approximately 3 decimal digits of precision. For
+They can represent positive and negative values as small as 0.000062 and as
+large as 65504.0 with approximately 3 decimal digits of precision. For
 example, pi is rounded to 3.140625.
 
 ###Credit
