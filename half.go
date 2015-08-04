@@ -3,6 +3,7 @@ package half
 import (
 	"encoding/binary"
 	"math"
+	"strconv"
 )
 
 type Float16 uint16
@@ -190,4 +191,9 @@ func (x Float16) LittleEndian() []byte {
 	b := make([]byte, 2)
 	x.PutLittleEndian(b)
 	return b
+}
+
+// stringer
+func (x Float16) String() string {
+	return strconv.FormatFloat(x.To64(), 'f', 7, 64)
 }
